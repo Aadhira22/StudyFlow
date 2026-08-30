@@ -10,18 +10,32 @@ function Flashcards({ studySet, setScreen }) {
   const currentCard = cards[currentIndex];
 
   const nextCard = () => {
-    if (currentIndex < cards.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+  if (currentIndex < cards.length - 1) {
+    if (isFlipped) {
       setIsFlipped(false);
-    }
-  };
 
-  const previousCard = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setIsFlipped(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev + 1);
+      }, 500);
+    } else {
+      setCurrentIndex((prev) => prev + 1);
     }
-  };
+  }
+};
+
+const previousCard = () => {
+  if (currentIndex > 0) {
+    if (isFlipped) {
+      setIsFlipped(false);
+
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev - 1);
+      }, 500);
+    } else {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  }
+};
 
   return (
     <div className="app">
