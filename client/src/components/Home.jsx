@@ -5,7 +5,8 @@ import { generateStudyMaterial } from "../services/api";
 function Home({ setScreen, setStudySet }) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  const [error, setError] = useState("");
+
   const handleGenerate = async () => {
     if (!input.trim() || loading) {
         return;
@@ -13,6 +14,7 @@ function Home({ setScreen, setStudySet }) {
 
     try {
         setLoading(true);
+        setError("");
 
         const result = await generateStudyMaterial(input);
 
@@ -20,6 +22,9 @@ function Home({ setScreen, setStudySet }) {
         setScreen("flashcards");
     } catch (error) {
         console.error("Generation failed:", error);
+        setError(
+          "We couldn't generate your study set. Please try again."
+        );
     } finally {
         setLoading(false);
     }
@@ -66,6 +71,24 @@ function Home({ setScreen, setStudySet }) {
             placeholder="Enter a topic or paste your study notes here..."
           />
 
+          {error && (
+              <div className="error-state">
+                <div className="error-icon">!</div>
+
+                <div>
+                  <strong>Something went wrong</strong>
+                  <p>{error}</p>
+                </div>
+
+                <button
+                  onClick={handleGenerate}
+                  disabled={!input.trim() || loading}
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+
           <div className="examples">
             <p>Examples:</p>
             <p>— "The French Revolution"</p>
@@ -86,6 +109,17 @@ function Home({ setScreen, setStudySet }) {
                     : "Generate Study Set →"}
             </button>
           </div>
+
+          {loading && (
+              <div className="loading-state">
+                <div className="loading-spinner"></div>
+
+                <div>
+                  <strong>Building your study set...</strong>
+                  <p>Generating flashcards and quiz questions</p>
+                </div>
+              </div>
+            )}
         </section>
 
         <section className="features">
