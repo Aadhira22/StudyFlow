@@ -71,24 +71,6 @@ function Home({ setScreen, setStudySet }) {
             placeholder="Enter a topic or paste your study notes here..."
           />
 
-          {error && (
-              <div className="error-state">
-                <div className="error-icon">!</div>
-
-                <div>
-                  <strong>Something went wrong</strong>
-                  <p>{error}</p>
-                </div>
-
-                <button
-                  onClick={handleGenerate}
-                  disabled={!input.trim() || loading}
-                >
-                  Try Again
-                </button>
-              </div>
-            )}
-
           <div className="examples">
             <p>Examples:</p>
             <p>— "The French Revolution"</p>
@@ -110,6 +92,24 @@ function Home({ setScreen, setStudySet }) {
             </button>
           </div>
 
+          {error && (
+              <div className="error-state">
+                <div className="error-icon">!</div>
+
+                <div>
+                  <strong>Something went wrong</strong>
+                  <p>{error}</p>
+                </div>
+
+                <button
+                  onClick={handleGenerate}
+                  disabled={!input.trim() || loading}
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+                        
           {loading && (
               <div className="loading-state">
                 <div className="loading-spinner"></div>
