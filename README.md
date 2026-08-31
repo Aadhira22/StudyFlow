@@ -8,7 +8,7 @@ The application uses Google's Gemini API to generate structured study material a
 
 ### Screen Recording
 
-<!-- Uploading "2026-08-31 19-13-29.mp4"... -->
+[Watch the StudyFlow demo](<https://drive.google.com/file/d/1ZR8sl9aUskzTcFnS9DGUs7h_02Y6tw0t/view?usp=sharing>)
 
 The recording demonstrates the main user flow, including study-set generation, flashcard interactions, quiz functionality, feedback, and results.
 
